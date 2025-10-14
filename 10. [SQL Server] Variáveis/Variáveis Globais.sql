@@ -1,0 +1,6 @@
+--Variaveis globais
+
+SELECT @@SERVERNAME
+SELECT @@VERSION
+SELECT * FROM DimProduct
+SELECT @@ROWCOUNT
