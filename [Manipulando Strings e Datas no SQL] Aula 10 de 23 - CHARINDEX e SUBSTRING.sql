@@ -11,7 +11,7 @@ select CHARINDEX(' ', 'Proseware 23ppm Laser Printer with Wireless and Wired Net
 -- Extraia o sobrenome da Raquel utilizando a função SUBSTRING
 select SUBSTRING('Raquel Moreno', 8, 6)
 
---Combine as funções CHARINDEX e SUBSTRING para extrair de forma automática qualquer sobrenome
+--Combine as funções CHARINDEX e SUBSTRING para extrair de forma automática qualquer sobrenome--
 
 declare @name varchar(50)
 set @name = 'Proseware 23ppm Laser Printer with Wireless and Wired Network Interfaces M680 Black'
