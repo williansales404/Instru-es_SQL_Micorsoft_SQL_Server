@@ -3,9 +3,10 @@
 
 --SELECT 'Raquel Moreno' AS 'Nome'
 --Descubra a posição em que começa o sobrenome da Raquel utilizando a função CHARINDEX
+declare @text Varchar(150)
+set @text = 'Proseware 23ppm Laser Printer with Wireless and Wired Network Interfaces M680 Black'
+select CHARINDEX(' ', @text,(CHARINDEX(' ', @text)+1))
 
-
-select CHARINDEX(' ', 'Proseware 23ppm Laser Printer with Wireless and Wired Network Interfaces M680 Black',(CHARINDEX(' ', 'Proseware 23ppm Laser Printer with Wireless and Wired Network Interfaces M680 Black')+1))
 --charindex acima pega o segundo posição de espaço
 
 -- Extraia o sobrenome da Raquel utilizando a função SUBSTRING
