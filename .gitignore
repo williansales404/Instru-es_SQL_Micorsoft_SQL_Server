@@ -1,0 +1,49 @@
+# VS Code settings
+.vscode/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.ssmssln
+
+# SQL Server database files
+*.mdf
+*.ldf
+*.bak
+*.sql~  # arquivos temporários
+*.db
+*.db-shm
+*.db-wal
+
+# Arquivos de log e cache
+*.log
+*.tmp
+*.cache
+
+# Arquivos de sistema
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Pastas de build
+bin/
+obj/
+out/
+build/
+
+# Node.js (caso use em algum ponto)
+node_modules/
+
+# Python (caso use scripts)
+__pycache__/
+*.pyc
+
+# MacOS
+*.DS_Store
+
+# Windows
+*.lnk
