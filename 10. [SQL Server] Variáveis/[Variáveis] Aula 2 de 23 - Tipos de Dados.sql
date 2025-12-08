@@ -18,7 +18,7 @@ Exemplos:
 10.33, 90.91, 410.787
 
 Como o SQL entende um número decimal: FLOAT
-Como o SQL entende um número decimal: DECIMAL(N, M)
+Como o SQL entende um número decimal: DECIMAL(4, 2)
 
 N é a quantidade de dígitos que o númeto pode ter, incluindo casas decimais
 M é o número máximo de casas decimais
