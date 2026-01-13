@@ -14,7 +14,8 @@ where exists(
 		ProductKey
 	from FactSales
 	--Linha de extrema importancia para usar exists
-	where DateKey = '01/01/2007' and DimProduct.ProductKey = FactSales.ProductKey
+	where DateKey = '01/01/2007'
+	and DimProduct.ProductKey = FactSales.ProductKey
 )
 
 --Essa e outro maneira de fazer a consulta usando any e deconsiderar 'and DimProduct.ProductKey = FactSales.ProductKey'
