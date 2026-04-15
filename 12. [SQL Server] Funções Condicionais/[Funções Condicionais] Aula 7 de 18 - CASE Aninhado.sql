@@ -23,8 +23,8 @@ select
 	Title,
 	SalariedFlag,
 	case
-		when Title = 'Sales Group Manager' 
-			then case
+		when Title = 'Sales Group Manager' then
+			case
 				when SalariedFlag = 1 then 0.30
 				else 0.20
 			end
