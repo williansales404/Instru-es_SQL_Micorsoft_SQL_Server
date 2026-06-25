@@ -62,60 +62,44 @@ where BrandName = 'Contoso'
 Dicas: 
 1- A coluna de ID será criada a partir de uma função de janela. Você deverá se atentar a forma como essa coluna deverá ser ordenada, pensando que queremos visualizar uma ordem de Ano/Mês que seja: 2005/january, 2005/February... e não 2005/April, 2005/August... 
 2- As colunas Ano, Mês e Qtd_Lojas correspondem, respectivamente, às seguintes colunas: CalendarYear e CalendarMonthLabel da tabela DimDate e uma contagem da coluna OpenDate da tabela DimStore. */
-go
-create view vwHistoricoLojas as
-	with Mes as(
-select
-	distinct
-	CalendarYear,
-	CalendarMonth,
-	CalendarMonthLabel
-from DimDate )
 
+/*go
+create view  vwHistoricoLojas as
 select
-	ROW_NUMBER() over(order by m.CalendarYear, m.CalendarMonth) as ID,
-	m.CalendarYear as Ano,
-	m.CalendarMonthLabel as Mes,
-	count(s.StoreKey) as QTD_loja
-from Mes m
-	left join DimDate d
-		on d.CalendarYear = m.CalendarYear and d.CalendarMonth = m.CalendarMonth
-	left join DimStore s
-		on cast(s.OpenDate as Date) = cast(d.FullDateLabel as Date)
-	group by m.CalendarYear, m.CalendarMonth, m.CalendarMonthLabel
-	--order by m.CalendarYear asc, m.CalendarMonth asc
-go
+	ROW_NUMBER() over(order by CalendarMonth) as 'ID',
+	CalendarYear as 'Ano',
+	CalendarMonthLabel as 'Mes',
+	COUNT(OpenDate) as 'Lojas_Abertas'
+from DimDate
+left join DimStore
+	on DimDate.Datekey = DimStore.OpenDate
+group by CalendarMonth, CalendarYear, CalendarMonthLabel
+go*/
 
 --////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*5. A partir da view criada no exercício anterior, você deverá fazer uma soma móvel considerando sempre o mês atual + 2 meses para trás.*/
-select * from vwHistoricoLojas
-
 select
 	*,
-	sum(QTD_loja) over(order by Ano rows between 2 preceding and current row) as 'Soma_Movel'
+	SUM(Lojas_Abertas) over(order by ID rows between 2 preceding and current row) as 'Soma_movel'
 from vwHistoricoLojas
 
 --////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*6. Utilize a vwHistoricoLojas para calcular o acumulado de lojas abertas a cada ano/mês. Exercício Desafio 2*/
 select 
 	*,
-	sum(QTD_loja) over(order by Ano rows between unbounded preceding and current row) as Acumalado
+	sum(Lojas_Abertas) over(order by Ano rows between unbounded preceding and current row) as Acumalado
 from vwHistoricoLojas
 
 --////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-select * from DimCustomer
-
+/*6. Utilize a vwHistoricoLojas para calcular o acumulado de lojas abertas a cada ano/mês. Exercício Desafio 2*/
 select
-DateFirstPurchase,
-case
-	when MONTH(DateFirstPurchase) = 1 then 'Janeiro'
-end as T,
-case
-	when MONTH(DateFirstPurchase) = 1 then cast(DateFirstPurchase as date)
-end as D
-from DimCustomer
-where CustomerType = 'Person'
-order by MONTH(DateFirstPurchase), DAY(DateFirstPurchase)
+	*,
+	sum(Lojas_Abertas) over(order by ID rows between unbounded preceding and current row) as 'Acumulado'
+from vwHistoricoLojas
+
+--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 
 

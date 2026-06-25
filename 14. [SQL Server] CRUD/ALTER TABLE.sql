@@ -9,6 +9,7 @@ SELECT * FROM Funcionarios
 alter table Funcionarios
 add cargo varchar(100), bonus float
 
+-- Faz ateração na coluna de linhas
 update Funcionarios
 set cargo = 'Anlista', bonus = 0.15
 where id_funcionario = 1
