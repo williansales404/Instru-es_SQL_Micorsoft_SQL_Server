@@ -28,6 +28,6 @@ delete from carro_aux
 where id_carro = 6
 commit transaction
 
-PRINT @@TRANCOUNT
+ 
 
 select * from carro_aux

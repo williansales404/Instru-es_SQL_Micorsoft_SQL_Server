@@ -21,6 +21,16 @@ CYCLE | NO CYCLE;       -- quando atinge o valor máximo, pode ou não voltar do c
 
 */
 
+--TIPOS DE INCREMENTO
+/*
+tinyint - intervalo de 0 a 255
+smallint - intervalo de -32.768 a 32.767
+int - intervalo de -2.147.483.648 a 2.147.483.647
+bigint - intervalo -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807 ** PADRÃO
+decimal e numeric com uma escala de 0.
+*/
+
+
 
 
 -- Crie uma sequência para o id_cliente
