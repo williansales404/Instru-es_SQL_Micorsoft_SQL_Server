@@ -31,3 +31,5 @@ commit transaction
  
 
 select * from carro_aux
+
+--//--
